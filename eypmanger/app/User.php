@@ -7,11 +7,21 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+  use Notifiable;
 
-    protected $guarded = [];
+  protected $guarded = [];
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  protected $hidden = [
+      'password', 'remember_token',
+  ];
+
+  public function repos()
+  {
+    return $this->hasMany(Repo::class);
+  }
+
+  public function linkedsocialaccounts()
+  {
+    return $this->hasMany(LinkedSocialAccount::class);
+  }
 }
