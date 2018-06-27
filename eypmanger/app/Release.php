@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Repo extends Model
+class Release extends Model
 {
   protected $guarded = [];
 }
