@@ -29,3 +29,12 @@ ExecStart=/usr/bin/php /home/jprats/git/laravel-%i/%i/artisan queue:work --daemo
 WantedBy=multi-user.target
 root@shuvak:/etc/systemd/system#
 ```
+
+## notes
+
+### The bootstrap/cache directory must be present and writable
+
+```
+root@shuvak:/home/jprats/git/laravel-eypmanager/eypmanger# php artisan cache:clear
+Application cache cleared!
+```

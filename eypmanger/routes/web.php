@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/login/{provider}',          'Auth\SocialAccountController@redirectToProvider');
+Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
