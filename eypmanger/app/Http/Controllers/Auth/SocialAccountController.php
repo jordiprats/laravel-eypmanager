@@ -39,8 +39,9 @@ class SocialAccountController extends Controller
     {
       # usuari ja existent (mail ja esta a la DB)
       auth()->login($user, true);
-      // TODO: millorar
       $lsa = LinkedSocialAccount::where(['user_id' => $user->id])->first();
+
+      // TODO: millorar fent update de dades
 
       if($provider=="github")
       {
@@ -74,6 +75,7 @@ class SocialAccountController extends Controller
         'token' => $userSocial->token,
         'refresh_token' => $userSocial->refreshToken,
         'expires_in' => $userSocial->expiresIn,
+        'nickname'  => $userSocial->getNickname(),
       ]);
 
       auth()->login($user, true);
