@@ -71,11 +71,11 @@ class SocialAccountController extends Controller
       // TODO: gestio OAuth One
       LinkedSocialAccount::create([
         'user_id' => $user->id,
+        'nickname'  => $userSocial->getNickname(),
         'provider' => $provider,
         'token' => $userSocial->token,
         'refresh_token' => $userSocial->refreshToken,
         'expires_in' => $userSocial->expiresIn,
-        'nickname'  => $userSocial->getNickname(),
       ]);
 
       auth()->login($user, true);
