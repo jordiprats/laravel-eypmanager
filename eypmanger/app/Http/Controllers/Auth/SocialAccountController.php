@@ -41,12 +41,18 @@ class SocialAccountController extends Controller
       auth()->login($user, true);
       $lsa = LinkedSocialAccount::where(['user_id' => $user->id])->first();
 
-      // TODO: millorar fent update de dades
+      $user->name = $userSocial->getName();
+      $user->nickname = $userSocial->getNickname();
 
-      if($provider=="github")
-      {
-        // dispatch(new GitHubGetUserRepos($user->nickname, $user->nickname));
-      }
+      $user->save();
+
+      $lsa->nickname  = $userSocial->getNickname();
+      $lsa->provider = $provider;
+      $lsa->token = $userSocial->token;
+      $lsa->refresh_token = $userSocial->refreshToken;
+      $lsa->expires_in = $userSocial->expiresIn;
+
+      $lsa->save();
 
       return redirect()->action('HomeController@index');
     }
@@ -69,23 +75,23 @@ class SocialAccountController extends Controller
       // $tokenSecret = $user->tokenSecret;
 
       // TODO: gestio OAuth One
-      LinkedSocialAccount::create([
-        'user_id' => $user->id,
-        'nickname'  => $userSocial->getNickname(),
-        'provider' => $provider,
-        'token' => $userSocial->token,
+      $lsa = LinkedSocialAccount::create([
+        'user_id'       => $user->id,
+        'nickname'      => $userSocial->getNickname(),
+        'provider'      => $provider,
+        'token'         => $userSocial->token,
         'refresh_token' => $userSocial->refreshToken,
-        'expires_in' => $userSocial->expiresIn,
+        'expires_in'    => $userSocial->expiresIn,
       ]);
 
       auth()->login($user, true);
 
-      if($provider=="github")
-      {
-        // dispatch(new GitHubGetUserRepos($user->nickname, $user->nickname));
-      }
-
       return redirect()->action('HomeController@index');
+    }
+
+    if($provider=="github")
+    {
+      // dispatch(new GitHubGetUserRepos($user->nickname, $user->nickname));
     }
   }
 }
