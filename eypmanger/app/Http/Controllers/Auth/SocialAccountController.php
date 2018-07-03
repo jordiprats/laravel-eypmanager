@@ -53,8 +53,6 @@ class SocialAccountController extends Controller
       $lsa->expires_in = $userSocial->expiresIn;
 
       $lsa->save();
-
-      return redirect()->action('HomeController@index');
     }
     else
     {
@@ -85,13 +83,13 @@ class SocialAccountController extends Controller
       ]);
 
       auth()->login($user, true);
-
-      return redirect()->route('show.eyp.user', [$user->nickname]);
     }
 
     if($provider=="github")
     {
       // dispatch(new GitHubGetUserRepos($user->nickname, $user->nickname));
     }
+
+    return redirect()->route('show.eyp.user', [$user->nickname]);
   }
 }
