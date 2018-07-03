@@ -65,6 +65,16 @@
                                         </form>
                                     </li>
                                     <li>
+                                        <a href="{{ route('show.eyp.user', [Auth::user()->nickname]) }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('profile-form').submit();">
+                                            Your profile
+                                        </a>
+
+                                        <form id="profile-form" action="{{ route('show.eyp.user', [Auth::user()->nickname]) }}" method="GET" style="display: none;">
+                                        </form>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('user.edit') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('settings-form').submit();">

@@ -29,4 +29,9 @@ class User extends Authenticatable
   {
     return $this->hasMany(LinkedSocialAccount::class)>where('provider', 'github');
   }
+
+  public function platforms()
+  {
+    return $this->hasMany(Platform::class);
+  }
 }
