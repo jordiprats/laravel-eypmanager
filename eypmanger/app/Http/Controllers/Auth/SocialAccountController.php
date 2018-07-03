@@ -86,7 +86,7 @@ class SocialAccountController extends Controller
 
       auth()->login($user, true);
 
-      return redirect()->action('HomeController@index');
+      return redirect()->route('show.eyp.user', [$user->nickname]);
     }
 
     if($provider=="github")

@@ -15,8 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login/{provider}',          'Auth\SocialAccountController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
+Route::prefix('/{nickname}')->group(function () {
+  Route::prefix('/platforms/{platform}')->group(function () {
+    Route::get('/', 'PlatformController@getUserPlatform')->name('show.eyp.user.platform');
+  });
+  Route::prefix('/repos/{repo}')->group(function () {
+    Route::get('/', 'RepoController@getUserRepo')->name('show.eyp.user.repo');
+  });
+  Route::get('/', 'UserController@getUserInfo')->name('show.eyp.user');
+});
