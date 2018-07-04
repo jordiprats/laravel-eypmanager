@@ -4,10 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-  //
+  public static function githubAPI($nickname)
+  {
+    $user=User::where(['nickname'=> $nickname])->first();
+
+    if($user)
+    {
+      if(!$user->organization)
+      {
+        return app('github.factory')->make(['token' => $user->githubSocialAccount->first()->token, 'method' => 'token']);
+      }
+      else
+      {
+        // TODO
+        Log::info("User->github: ".$this->nickname." is organization - NOT IMPLEMENTED");
+        return null;
+      }
+    }
+    else {
+      return null;
+    }
+  }
 
   public function getUserInfo($nickname)
   {

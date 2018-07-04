@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\User;
 
-class ListUsersCmd extends Command
+class ListUsersEmailsCmd extends Command
 {
   /**
    * The name and signature of the console command.

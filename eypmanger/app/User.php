@@ -5,6 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use GrahamCampbell\GitHub\Authenticators\AuthenticatorFactory;
+use GrahamCampbell\GitHub\GitHubFactory;
+use GitHub;
+use Github\ResultPager;
+
 class User extends Authenticatable
 {
   use Notifiable;
@@ -25,9 +30,9 @@ class User extends Authenticatable
     return $this->hasMany(LinkedSocialAccount::class);
   }
 
-  public function github()
+  public function githubSocialAccount()
   {
-    return $this->hasMany(LinkedSocialAccount::class)>where('provider', 'github');
+    return $this->hasMany(LinkedSocialAccount::class)->where('provider', 'github');
   }
 
   public function platforms()
