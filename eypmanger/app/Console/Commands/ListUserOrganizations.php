@@ -17,7 +17,7 @@ class ListUserOrganizations extends Command
    *
    * @var string
    */
-  protected $signature = 'users:listorganizations {nickname}';
+  protected $signature = 'users:listorganizations {nickname} {--debug}';
 
   /**
    * The console command description.
@@ -48,9 +48,15 @@ class ListUserOrganizations extends Command
     $github=UserController::githubAPI($nickname);
     if($github)
     {
-      foreach ($github->me()->memberships()->all() as $github_membership)
+      $github_memberships=$github->me()->memberships()->all();
+      if($this->option('debug'))
+        print_r($github_memberships);
+      else
       {
-        print($github_membership['organization']['login']."\n");
+        foreach ($github_memberships as $github_membership)
+        {
+          print($github_membership['organization']['login']."\n");
+        }
       }
     }
     else
