@@ -61,7 +61,7 @@ class ListUserOrganizationsCmd extends Command
     }
     else
     {
-      print("ERROR: ".$nickname." is not a eypmanager registered user\n");
+      print("ERROR: ".$nickname." is not an eypmanager registered user\n");
     }
   }
 }
