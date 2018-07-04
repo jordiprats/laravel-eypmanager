@@ -10,7 +10,7 @@ use GrahamCampbell\GitHub\GitHubFactory;
 use GitHub;
 use Github\ResultPager;
 
-class ListUserOrganizations extends Command
+class ListUserOrganizationsCmd extends Command
 {
   /**
    * The name and signature of the console command.
