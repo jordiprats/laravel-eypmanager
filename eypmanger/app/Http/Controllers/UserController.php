@@ -21,13 +21,11 @@ class UserController extends Controller
       else
       {
         // TODO
-        Log::info("User->github: ".$this->nickname." is organization - NOT IMPLEMENTED");
+        Log::info("UserController::githubAPI: ".$this->nickname." is organization - NOT IMPLEMENTED");
         return null;
       }
     }
-    else {
-      return null;
-    }
+    else return null;
   }
 
   public function getUserInfo($nickname)
