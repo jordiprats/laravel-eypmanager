@@ -21,31 +21,20 @@ class RepoController extends Controller
       {
         $repo = Repo::where(['clone_url' => $github_repo['clone_url']])->first();
 
+        if($github_repo['fork'])
+        {
+          $github_repo_extended=$github->repos()->showById($github_repo['id']);
+          $fork=$github_repo_extended['parent']['full_name'];
+        }
+        else
+        {
+          $fork=NULL;
+        }
+
+        $is_private=$github_repo['private']?true:false;
+
         if(!$repo)
         {
-          if($github_repo['fork'])
-          {
-            #$repo = $client->api('repo')->showById(123456)
-            $github_repo_extended=$github->repos()->showById($github_repo['id']);
-            // print_r($github_repo_extended);
-
-            $fork=$github_repo_extended['parent']['full_name'];
-          }
-          else
-          {
-            $fork=NULL;
-          }
-
-          $is_private=$github_repo['private']?true:false;
-
-          // echo "===\n";
-          // echo "name: ".$github_repo['name']."\n";
-          // echo "full_name: ".$github_repo['full_name']."\n";
-          // echo "fork: ".$fork."\n";
-          // echo "private: ".$is_private."\n";
-          // echo "clone_url: ".$github_repo['clone_url']."\n";
-          // echo "user_id: ".$user->id."\n";
-          // echo "github_id: ".$github_repo['id']."\n";
 
           $repo = Repo::create([
               'repo_name'        => $github_repo['name'],
