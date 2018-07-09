@@ -58,9 +58,10 @@ class SocialAccountController extends Controller
     {
       # donar d'alta user si no el tenim per un altre provider
       $user = User::create([
-          'email'     => $userSocial->getEmail(),
-          'name'      => $userSocial->getName(),
-          'nickname'  => $userSocial->getNickname(),
+          'email'            => $userSocial->getEmail(),
+          'name'             => $userSocial->getName(),
+          'nickname'         => $userSocial->getNickname(),
+          'webhook_password' => substr(md5(str_random(10).uniqid().$user->id),0,12),
       ]);
 
       // // OAuth Two Providers
