@@ -61,7 +61,7 @@ class SocialAccountController extends Controller
           'email'            => $userSocial->getEmail(),
           'name'             => $userSocial->getName(),
           'nickname'         => $userSocial->getNickname(),
-          'webhook_password' => substr(md5(str_random(10).uniqid().$user->id),0,12),
+          'webhook_password' => substr(md5(str_random(10).uniqid().$provider),0,12),
       ]);
 
       // // OAuth Two Providers
