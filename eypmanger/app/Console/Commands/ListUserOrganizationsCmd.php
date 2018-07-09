@@ -24,7 +24,7 @@ class ListUserOrganizationsCmd extends Command
    *
    * @var string
    */
-  protected $description = 'list user\'s organizations';
+  protected $description = 'list github organizations for a given user';
 
   /**
    * Create a new command instance.
