@@ -35,28 +35,27 @@ class RepoController extends Controller
 
         if(!$repo)
         {
-
-          // TODO: definir els defaults del usuari en el moment de creació del repo a la DB
-          // $table->boolean('webhook')->default(false);
-          // $table->string('webhook_password')->nullable();
           $repo = Repo::create([
+              'github_id'        => $github_repo['id'],
               'repo_name'        => $github_repo['name'],
               'full_name'        => $github_repo['full_name'],
               'fork'             => $fork,
               'private'          => $is_private,
               'clone_url'        => $github_repo['clone_url'],
               'user_id'          => $user->id,
+              'webhook'          => $user->webhook,
+              'webhook_password' => $user->webhook_password,
             ]);
         }
         else
         {
+          $repo->github_id        = $github_repo['id'];
           $repo->repo_name        = $github_repo['name'];
           $repo->full_name        = $github_repo['full_name'];
           $repo->fork             = $fork;
           $repo->private          = $is_private;
           $repo->clone_url        = $github_repo['clone_url'];
           $repo->user_id          = $user->id;
-          $repo->github_id        = $github_repo['id'];
 
           $repo->save();
         }

@@ -15,6 +15,7 @@ class CreateReposTable extends Migration
     {
       Schema::create('repos', function (Blueprint $table) {
         $table->increments('id');
+        $table->integer('github_id')->nullable();
         $table->string('repo_name');
         $table->string('clone_url');
         $table->string('full_name')->nullable();
@@ -24,9 +25,8 @@ class CreateReposTable extends Migration
         $table->integer('user_id')->nullable()->references('id')->on('users');
         $table->boolean('webhook')->default(false);
         $table->string('webhook_password')->nullable();
-        $table->boolean('autoreleasetags')->default(true);
         $table->boolean('autotag')->default(true);
-        $table->integer('github_id')->nullable();
+        $table->boolean('autoreleasetags')->default(true);
         $table->boolean('puppet_module')->default(false);
         $table->timestamp('repo_analyzed_on')->nullable();
         $table->timestamp('fetched_repo_releases_on')->nullable();
