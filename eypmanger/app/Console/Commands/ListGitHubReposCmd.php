@@ -46,21 +46,14 @@ class ListGitHubReposCmd extends Command
     {
       $github_paginator  = new ResultPager($github);
 
-      foreach ($github_paginator->fetchAll($github->users(), 'repositories', [$nickname]) as $github_repo)
-      {
-        if($this->option('debug'))
-        {
-          print_r($github_repo);
-        }
-        else
-        {
+      $github_repos=$github_paginator->fetchAll($github->users(), 'repositories', [$nickname]);
+
+      if($this->option('debug'))
+        print_r($github_repos);
+      else
+        foreach ($github_repos as $github_repo)
           print($github_repo['full_name']."\n");
-        }
-      }
     }
-    else
-    {
-      print("ERROR: ".$nickname." is not an eypmanager registered user\n");
-    }
+    else print("ERROR: ".$nickname." is not an eypmanager registered user\n");
   }
 }
