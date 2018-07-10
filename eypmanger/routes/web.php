@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/webhook/github', 'WebhookController@github_status')->name('github.webhook.status');
+
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login/{provider}',          'Auth\SocialAccountController@redirectToProvider');
 Route::get('/login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
