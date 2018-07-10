@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Repo;
 use Github\ResultPager;
 use Illuminate\Http\Request;
 
