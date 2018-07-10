@@ -62,6 +62,6 @@ class RepoController extends Controller
 
       }
     }
-    else return null;
+    return $user;
   }
 }
