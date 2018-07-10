@@ -23,10 +23,14 @@ class GitHubValidator
 
     Log::info($json_input);
 
+    $json_data=json_decode($json_input);
+
+    //TODO: consultar el webhook_password del repo
+
     if(strlen(config('githubsecret.secret'))<=0)
     {
       Log::info("no esta configurat el githubsecret");
-      return response(['penis' => '8D'], 401);
+      return response(['penis' => 'not found'], 401);
     }
 
     if(!$this->isPOST($request))
