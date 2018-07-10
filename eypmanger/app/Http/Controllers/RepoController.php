@@ -26,10 +26,14 @@ class RepoController extends Controller
         {
           $github_repo_extended=$github->repos()->showById($github_repo['id']);
           $fork=$github_repo_extended['parent']['full_name'];
+          $autotag=false;
+          $autoreleasetags=false;
         }
         else
         {
           $fork=NULL;
+          $autotag=true;
+          $autoreleasetags=true;
         }
 
         $is_private=$github_repo['private']?true:false;
@@ -46,6 +50,8 @@ class RepoController extends Controller
               'user_id'          => $user->id,
               'webhook'          => $user->webhook,
               'webhook_password' => $user->webhook_password,
+              'autotag'          => $autotag,
+              'autoreleasetags'  => $autoreleasetags,
             ]);
         }
         else
