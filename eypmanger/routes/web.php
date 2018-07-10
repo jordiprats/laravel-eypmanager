@@ -16,6 +16,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/webhook/github', 'WebhookController@github_status')->name('github.webhook.status');
+Route::post('/webhook/github', array(
+                                      'uses' => 'MergeController@listener',
+                                      'middleware' => ['githubvalidator']
+                                    ))->name('github.mergehook');
 
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/login/{provider}',          'Auth\SocialAccountController@redirectToProvider');

@@ -37,7 +37,6 @@ class GetGitHubHookURLCmd extends Command
    */
   public function handle()
   {
-    //print(route('post.show'));
-    print("TODO");
+    print(route('github.mergehook')."\n");
   }
 }
