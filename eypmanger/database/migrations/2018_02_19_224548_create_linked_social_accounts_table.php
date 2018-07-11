@@ -32,6 +32,7 @@ class CreateLinkedSocialAccountsTable extends Migration
       $table->string('token_secret')->nullable();
       // user info
       $table->string('nickname')->nullable();
+      $table->integer('github_id')->nullable();
       $table->timestamps();
     });
   }
