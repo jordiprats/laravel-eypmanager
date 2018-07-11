@@ -89,7 +89,7 @@ class SocialAccountController extends Controller
 
     if($provider=="github")
     {
-      // dispatch(new GitHubGetUserRepos($user->nickname, $user->nickname));
+      dispatch(new ImportUserRepos($user->nickname));
     }
 
     return redirect()->route('show.eyp.user', [$user->nickname]);
