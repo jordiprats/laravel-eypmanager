@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
       $table->boolean('organization')->default(false);
       $table->boolean('webhook')->default(false);
       $table->string('webhook_password')->nullable();
+      $table->timestamp('fetched_repos_on')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });

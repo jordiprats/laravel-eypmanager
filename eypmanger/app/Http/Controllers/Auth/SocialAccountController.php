@@ -89,7 +89,8 @@ class SocialAccountController extends Controller
 
     if($provider=="github")
     {
-      dispatch(new ImportUserRepos($user->nickname));
+      if((!$user->fetched_repos_on) || ($user->fetched_repos_on < strtotime("-24 hours")))
+        dispatch(new ImportUserRepos($user->nickname));
     }
 
     return redirect()->route('show.eyp.user', [$user->nickname]);

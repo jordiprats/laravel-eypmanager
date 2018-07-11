@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Repo;
+use Carbon\Carbon;
 use Github\ResultPager;
 use Illuminate\Http\Request;
 
@@ -68,6 +69,7 @@ class RepoController extends Controller
         }
 
       }
+      $user->fetched_repos_on = Carbon::now();
     }
     return $user;
   }
