@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\UserController;
 use App\User;
 use App\LinkedSocialAccount;
-use App\Jobs\GitHubGetUserRepos;
+use App\Jobs\ImportUserRepos;
 
 use Socialite;
 
