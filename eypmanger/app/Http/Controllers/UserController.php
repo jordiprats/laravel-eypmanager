@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
-  public static function importOrganizations()
+  public static function importOrganizations($nickname)
   {
 
   }
-  
+
   public static function githubAPI($nickname)
   {
     $user=User::where(['nickname'=> $nickname])->first();
