@@ -12,4 +12,9 @@ class Release extends Model
   {
     return $this->belongsTo(Repo::class);
   }
+
+  public function platforms()
+  {
+      return $this->belongsToMany(Platforms::class)->withTimestamps();
+  }
 }
