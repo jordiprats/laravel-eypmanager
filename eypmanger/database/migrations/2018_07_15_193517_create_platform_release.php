@@ -17,6 +17,8 @@ class CreatePlatformRelease extends Migration
       $table->increments('id');
       $table->integer('platform_id')->references('id')->on('platforms');
       $table->integer('release_id')->references('id')->on('releases');
+      $table->boolean('prerelease');
+      $table->boolean('draft')->default(false);
       $table->timestamps();
     });
   }
