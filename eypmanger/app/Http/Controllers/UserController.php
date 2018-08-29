@@ -10,7 +10,16 @@ class UserController extends Controller
 {
   public static function importOrganizations($nickname)
   {
+    $user=User::where(['nickname'=> $nickname])->first();
 
+    if($user)
+    {
+      $github = UserController::githubAPI($nickname);
+      $github_paginator  = new ResultPager($github);
+
+      // foreach ($github_paginator->fetchAll($github->users(), 'repositories', [$user->nickname]) as $github_org)
+    }
+    else return null;
   }
 
   public static function githubAPI($nickname)
